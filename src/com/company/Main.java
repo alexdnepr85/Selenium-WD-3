@@ -37,5 +37,13 @@ public class Main {
 
         System.out.println(j2[0]+"-"+j3[0]+","+j2[1]+"-"+j3[1]+","+j2[2]+"-"+j3[2]);
         System.out.println();
+        int f=20;
+        if (f<15) {
+            System.out.println("Усл Вып.");
+        }
+        else
+        {
+            System.out.println("Усл не Вып.");
+        }
     }
 }
