@@ -36,6 +36,21 @@ public class Main2 {
             a=a+1;
         }
         System.out.println("While is over2!");
+        int i = 0;
+        while (i <5) {
+            i = 10;
+            System.out.println(i);
+        }
+        System.out.println(i);
+        String s = "s";
+           for (int j =0; j < 5; j = j + 1) {
+                System.out.println(j);
+               if (s.equals("error")) {
+                   break;}
+
+                   System.out.println(j);
+        }
+
     }
 }
 
