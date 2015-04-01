@@ -1,7 +1,12 @@
 package com.company;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+
+import java.util.List;
 
 /**
  * Created by Alex on 30.03.2015.
@@ -15,19 +20,30 @@ public class Main3 {
 
         h.manage().window().maximize();
 
-        h.get("https://denise.pdffiller.com");
+        h.get("http://google.com");
 
-        Thread.sleep(5000);
-
-
-
-        String s;
-        s = "Login";
-        int i =10;
-        i = s.length();
-        s.contains("Login");
-        System.out.println(i);
-
+        String title = h.getTitle();
+        System.out.println(title);
+        WebElement s = h.findElement(By.name("q"));
+        s.sendKeys("qa factory", Keys.ENTER);
+        Thread.sleep(3000);
+        WebElement rso = h.findElement(By.id("rso"));
+        WebElement f = rso.findElement(By.tagName("a"));
+        System.out.println(f.getText());
+        List<WebElement> as=rso.findElements(By.tagName("a"));
+        for (int i =0; i < as.size();  i++) {
+            System.out.println(as.get(i));
+        }
+        int j = 0;
+        int els = as.size();
+        while (j<els) {
+            System.out.println(as.get(j).getText());
+            System.out.println(as.get(j).getAttribute("href"));
+            j = j + 1;
+        }
+        s.clear();
+        s.sendKeys("angel sha1");
+        h.findElement(By.name("btnG")).click();
     }
 
 }
