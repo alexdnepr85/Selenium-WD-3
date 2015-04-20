@@ -4,9 +4,15 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
 
+/**
+ * Created by Dimonaz on 13.04.2015.
+ */
 public class Homework_6 {
 
     public static WebDriver driver;
@@ -15,14 +21,14 @@ public class Homework_6 {
     public static WebElement passwordField;
     public static WebElement buttonGenerate;
 
-    public static void master(String master) {
+    public static void setMaster(String master) {
 
         masterField.clear();
         masterField.sendKeys(master);
 
     }
 
-    public static String master(){
+    public static String getMaster(){
 
         String master = "";
         master = masterField.getAttribute("value");
@@ -30,14 +36,14 @@ public class Homework_6 {
 
     }
 
-    public static void site(String site) {
+    public static void setSite(String site) {
 
         siteField.clear();
         siteField.sendKeys(site);
 
     }
 
-    public static String site(){
+    public static String getSite(){
 
         String site = "";
         site = siteField.getAttribute("value");
@@ -45,13 +51,16 @@ public class Homework_6 {
 
     }
 
-    public static void generate() {
+    public static void generate() throws InterruptedException {
 
+        String password = "";
         buttonGenerate.click();
 
+        while (passwordField.getAttribute("value").equals(""))
+            Thread.sleep(100);
     }
 
-    public static String password() {
+    public static String getPassword() {
 
         String password = "";
         password = passwordField.getAttribute("value");
@@ -61,7 +70,7 @@ public class Homework_6 {
 
     public static void verify (String password){
 
-        String generatedPassword = password();
+        String generatedPassword = getPassword();
         if (generatedPassword.equals(password)){
 
             System.out.println("Password matches!");
@@ -86,9 +95,9 @@ public class Homework_6 {
 
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception{
 
-        System.setProperty("webdriver.chrome.driver", "C:/chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "C:/MyWork/AUTS/chromedriver_win32/chromedriver.exe");
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.get("http://angel.net/~nic/passwd.current.html");
@@ -100,23 +109,23 @@ public class Homework_6 {
         List<WebElement> input = driver.findElements(By.tagName("input"));
         buttonGenerate = input.get(2);
 
-        master("12345678");
-        site("gmail.com");
+        setMaster("12345678");
+        setSite("gmail.com");
         generate();
-        System.out.println(password());
+        System.out.println(getPassword());
         verify("W3Hdka0clbEI+@1a");
 
-        System.out.println(master());
+        System.out.println(getMaster());
 
-        System.out.println(site());
+        System.out.println(getSite());
 
         System.out.println(title());
 
         System.out.println(button());
 
-        site("");
+        setSite("");
         generate();
-        System.out.println(password());
+        System.out.println(getPassword());
         verify("9Ixm2r5Xnm41Q@1a");
 
         driver.quit();
