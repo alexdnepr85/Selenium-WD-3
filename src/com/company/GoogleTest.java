@@ -97,7 +97,11 @@ public class GoogleTest {
 
     public void Test8()throws Exception{
 
-        Assert.assertEquals("Hola!", getTranslation("English", "Spanish", "Hello!"));
+        setInputLanguage("Ukrainian");
+        setOutputLanguage("Spanish");
+        setField(inputField, "Слава Україні! Героям Слава!");
+        verifyPresent(result);
+        Assert.assertEquals("Gloria a Ucrania! ¡Gloria a los héroes!", getField(resultField));
 
     }
 
